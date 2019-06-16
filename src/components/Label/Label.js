@@ -7,7 +7,9 @@ const Label = ({ children, customStyles }) => (
 );
 
 Label.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  ).isRequired,
   customStyles: PropTypes.string.isRequired,
 };
 

@@ -18,7 +18,7 @@ const Values = ({ budget, expenses, balance }) => (
 );
 
 Values.propTypes = {
-  budget: PropTypes.number.isRequired,
+  budget: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   expenses: PropTypes.number.isRequired,
   balance: PropTypes.number.isRequired,
 };

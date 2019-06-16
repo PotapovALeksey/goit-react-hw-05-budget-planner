@@ -15,7 +15,7 @@ export default class ExpenseForm extends Component {
     amount: 0,
   };
 
-  propTypes = {
+  static propTypes = {
     addExpense: PropTypes.func.isRequired,
   };
 

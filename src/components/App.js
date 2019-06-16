@@ -48,30 +48,14 @@ const App = ({ expenses, budget }) => {
 };
 
 App.propTypes = {
-  budget: PropTypes.number.isRequired,
-  expenses: PropTypes.arrayOf().isRequired,
+  budget: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  expenses: PropTypes.arrayOf(PropTypes.object),
 };
-// class App extends Component {
-//   propTypes = {
-//     budget: PropTypes.number.isRequired,
-//     expenses: PropTypes.arrayOf().isRequired,
-//   };
 
-//   render() {
-//     const { expenses, budget } = this.props;
-//     const totalExpenses = calculateTotalExpenses(expenses);
-//     const balance = calculateBalance(budget, totalExpenses);
-
-//     return (
-//       <Container>
-//         <BudgetForm />
-//         <Values budget={budget} expenses={totalExpenses} balance={balance} />
-//         <ExpenseForm />
-//         <ExpensesTable />
-//       </Container>
-//     );
-//   }
-// }
+App.defaultProps = {
+  expenses: [],
+  budget: 0,
+};
 
 const mapStateToProps = state => ({
   budget: budgetSelectors.getBudget(state),

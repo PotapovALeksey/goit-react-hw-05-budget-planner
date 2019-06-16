@@ -12,7 +12,7 @@ const labelStyles = `
 export default class BudgetForm extends Component {
   state = { budget: 0 };
 
-  propTypes = {
+  static propTypes = {
     onSave: PropTypes.func.isRequired,
   };
 

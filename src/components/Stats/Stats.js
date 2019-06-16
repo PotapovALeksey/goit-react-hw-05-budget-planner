@@ -11,8 +11,12 @@ const Stat = ({ label, value, isPositive }) => (
 
 Stat.propTypes = {
   label: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-  isPositive: PropTypes.bool.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  isPositive: PropTypes.bool,
+};
+
+Stat.defaultProps = {
+  isPositive: false,
 };
 
 export default Stat;
