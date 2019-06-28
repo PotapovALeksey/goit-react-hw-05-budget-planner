@@ -4,6 +4,7 @@ import Form from '../Form/Form';
 import Label from '../Label/Label';
 import Input from '../Input/Input';
 import Button from '../Button/Button';
+import Notification from '../Notification/Notification';
 
 const labelStyles = `
   margin-bottom: 16px;  
@@ -12,7 +13,9 @@ const labelStyles = `
 export default class ExpenseForm extends Component {
   state = {
     name: '',
-    amount: 0,
+    amount: '',
+    incorrectName: false,
+    incorrectAmount: false,
   };
 
   static propTypes = {
@@ -29,13 +32,23 @@ export default class ExpenseForm extends Component {
     e.preventDefault();
     const { name, amount } = this.state;
 
-    this.props.addExpense(name, amount);
+    if (!/[a-zA-Z]/.test(name) || !(name.length >= 3)) {
+      this.setState({ incorrectName: true });
+      return;
+    }
 
-    this.setState({ name: '', amount: 0 });
+    if (Number(amount) === 0) {
+      this.setState({ incorrectAmount: true });
+      return;
+    }
+    this.setState({ incorrectName: false, incorrectAmount: false });
+    this.props.addExpense(name, Number(amount).toFixed(2));
+
+    this.setState({ name: '', amount: '' });
   };
 
   render() {
-    const { name, amount } = this.state;
+    const { name, amount, incorrectName, incorrectAmount } = this.state;
 
     return (
       <Form onSubmit={this.handleSubmit}>
@@ -48,6 +61,9 @@ export default class ExpenseForm extends Component {
             onChange={this.handleChange}
           />
         </Label>
+        {incorrectName && (
+          <Notification text=" The name must contain Latin letters and be longer than 2 characters." />
+        )}
         <Label customStyles={labelStyles}>
           Enter expense amount
           <Input
@@ -57,6 +73,9 @@ export default class ExpenseForm extends Component {
             onChange={this.handleChange}
           />
         </Label>
+        {incorrectAmount && (
+          <Notification text="quantity must be greater than 0" />
+        )}
 
         <Button label="Add" type="submit" />
       </Form>

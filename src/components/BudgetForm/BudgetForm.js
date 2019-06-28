@@ -10,7 +10,7 @@ const labelStyles = `
 `;
 
 export default class BudgetForm extends Component {
-  state = { budget: 0 };
+  state = { budget: '' };
 
   static propTypes = {
     onSave: PropTypes.func.isRequired,
@@ -25,9 +25,9 @@ export default class BudgetForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    this.props.onSave(this.state.budget);
+    this.props.onSave(Number(this.state.budget).toFixed(2));
 
-    this.setState({ budget: 0 });
+    this.setState({ budget: '' });
   };
 
   render() {

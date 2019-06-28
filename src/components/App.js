@@ -35,7 +35,7 @@ const calculateBalance = (budget, expenses) => budget - expenses;
 
 const App = ({ expenses, budget }) => {
   const totalExpenses = calculateTotalExpenses(expenses);
-  const balance = calculateBalance(budget, totalExpenses);
+  const balance = calculateBalance(budget, totalExpenses).toFixed(2);
 
   return (
     <Container>
