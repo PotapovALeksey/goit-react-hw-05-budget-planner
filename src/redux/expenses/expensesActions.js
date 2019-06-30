@@ -7,7 +7,7 @@ export const ActionType = {
 
 export const addExpense = (name, amount) => ({
   type: ActionType.ADD_EXPENSE,
-  payload: { id: shortid.generate(), name, amount: Number(amount) },
+  payload: { id: shortid.generate(), name, amount },
 });
 
 export const deleteExpense = id => ({

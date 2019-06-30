@@ -42,7 +42,9 @@ export default class ExpenseForm extends Component {
       return;
     }
     this.setState({ incorrectName: false, incorrectAmount: false });
-    this.props.addExpense(name, Number(amount).toFixed(2));
+    const formatedAmount = parseFloat(Number(amount).toFixed(2));
+
+    this.props.addExpense(name, formatedAmount);
 
     this.setState({ name: '', amount: '' });
   };

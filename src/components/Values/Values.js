@@ -20,7 +20,7 @@ const Values = ({ budget, expenses, balance }) => (
 Values.propTypes = {
   budget: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   expenses: PropTypes.number.isRequired,
-  balance: PropTypes.number.isRequired,
+  balance: PropTypes.string.isRequired,
 };
 
 export default Values;
