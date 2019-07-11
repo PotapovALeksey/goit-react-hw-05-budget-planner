@@ -1,10 +1,9 @@
 import { createStore, combineReducers } from 'redux';
 import { devToolsEnhancer } from 'redux-devtools-extension';
-import balanceReducer from './budget/budgetReducer';
-import expensesReducer from './expenses/expensesReducer';
+import { budgetReducer, expensesReducer } from './plannerReducer';
 
 const rootReducer = combineReducers({
-  budget: balanceReducer,
+  budget: budgetReducer,
   expenses: expensesReducer,
 });
 
